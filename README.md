@@ -14,23 +14,25 @@ This project implements an abstract **Device Driver Interface** in C++ to intera
 
 The base `DeviceDriver` class defines the common interface:
 ```cpp
-class DeviceDriver {
-public:
-    virtual void initialize() = 0;
-    virtual void readData() = 0;
-    virtual void writeData(const std::string& data) = 0;
-    virtual void shutdown() = 0;
-    virtual ~DeviceDriver() {}
+class DeviceDriver
+{
+    public:
+        virtual void readData()   = 0;
+        virtual void writeData()  = 0;
+        virtual void shutdown()   = 0;
+        virtual      ~DeviceDriver() {}
 };
 ```
 
 Derived classes implement the interface:
 ```cpp
-class USBDriver : public DeviceDriver {
-    void initialize() override { /* USB init */ }
-    void readData() override { /* Read from USB */ }
-    void writeData(const std::string& data) override { /* Write to USB */ }
-    void shutdown() override { /* Shutdown USB */ }
+class USBDriver : public DeviceDriver 
+{
+    USBDriver()                {}
+    ~USBDriver()               {}
+    void readData()   override {}
+    void writeData()  override {}
+    void shutdown()   override {}
 };
 ```
 
